@@ -3,9 +3,17 @@ import { SearchInput } from '../../components/SearchInput';
 import { Banner } from '../../components/Banner';
 import { ProductItem } from '../../components/ProductItem';
 import { GetServerSideProps } from 'next';
-import { getTenantResponse, useApi } from '../../libs/useApi';
+import { useApi } from '../../libs/useApi';
+import { Tenant } from '../../type/Tenant';
+import { useAppContext } from '../../contexts/AppContext';
+import { useEffect } from 'react';
 
 const Home = (data: Props) => {
+    const { tenant, setTenant } = useAppContext();
+
+    useEffect(()=>{
+        setTenant(data.tenant);
+    }, []);
 
     const handleSearch = (searchValue: string) => {
         console.log(searchValue);
@@ -21,9 +29,9 @@ const Home = (data: Props) => {
                     </div>
                     <div className={styles.headerTopRight}>
                         <div className={styles.menuButton}>
-                            <div className={styles.menuButtonLine} style={{ backgroundColor: data.tenant.mainColor }}></div>
-                            <div className={styles.menuButtonLine} style={{ backgroundColor: data.tenant.mainColor }}></div>
-                            <div className={styles.menuButtonLine} style={{ backgroundColor: data.tenant.mainColor }}></div>
+                            <div className={styles.menuButtonLine} style={{ backgroundColor: tenant?.mainColor }}></div>
+                            <div className={styles.menuButtonLine} style={{ backgroundColor: tenant?.mainColor }}></div>
+                            <div className={styles.menuButtonLine} style={{ backgroundColor: tenant?.mainColor }}></div>
                         </div>    
                     </div>
                 </div>
@@ -74,7 +82,7 @@ const Home = (data: Props) => {
 export default Home;
 
 type Props = {
-    tenant: getTenantResponse
+    tenant: Tenant
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
