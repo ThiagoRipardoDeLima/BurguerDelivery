@@ -36,40 +36,32 @@ const Home = (data: Props) => {
                     </div>
                 </div>
                 <div className={styles.headerBottom}>
-                    <SearchInput
-                        mainColor={data.tenant.mainColor}
-                        onSearch={handleSearch}
-                    />
+                    <SearchInput onSearch={handleSearch} />
                 </div>
             </header>
 
             <Banner />
 
             <div className={styles.grid}>
+                
                 <ProductItem 
                     data={{ id: 1, image: './tmp/burger.png', categoryName: 'Tradicional', name: 'Texas Burger', price: 'R$ 25,50' }}
-                    mainColor={data.tenant.mainColor}
-                    secondColor={data.tenant.secondColor}
                 />
-
                 <ProductItem 
-                    data={{ id: 2, image: './tmp/burger.png', categoryName: 'Tradicional', name: 'Texas Burger', price: 'R$ 25,50' }}
-                    mainColor={data.tenant.mainColor}
-                    secondColor={data.tenant.secondColor}
+                    data={{ id: 1, image: './tmp/burger.png', categoryName: 'Tradicional', name: 'Texas Burger', price: 'R$ 25,50' }}
                 />
-
                 <ProductItem 
-                    data={{ id: 3, image: './tmp/burger.png', categoryName: 'Tradicional', name: 'Texas Burger', price: 'R$ 25,50' }}
-                    mainColor={data.tenant.mainColor}
-                    secondColor={data.tenant.secondColor}
+                    data={{ id: 1, image: './tmp/burger.png', categoryName: 'Tradicional', name: 'Texas Burger', price: 'R$ 25,50' }}
                 />
-
                 <ProductItem 
-                    data={{ id: 4, image: './tmp/burger.png', categoryName: 'Tradicional', name: 'Texas Burger', price: 'R$ 25,50' }}
-                    mainColor={data.tenant.mainColor}
-                    secondColor={data.tenant.secondColor}
+                    data={{ id: 1, image: './tmp/burger.png', categoryName: 'Tradicional', name: 'Texas Burger', price: 'R$ 25,50' }}
                 />
-
+                <ProductItem 
+                    data={{ id: 1, image: './tmp/burger.png', categoryName: 'Tradicional', name: 'Texas Burger', price: 'R$ 25,50' }}
+                />
+                <ProductItem 
+                    data={{ id: 1, image: './tmp/burger.png', categoryName: 'Tradicional', name: 'Texas Burger', price: 'R$ 25,50' }}
+                />
 
             </div>
 
