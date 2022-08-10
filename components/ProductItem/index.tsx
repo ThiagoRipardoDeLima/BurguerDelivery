@@ -2,6 +2,7 @@ import { Product } from '../../type/Product';
 import Link from 'next/link';
 import styles from './styles.module.css';
 import { useAppContext } from '../../contexts/AppContext';
+import { useFormatter } from '../../libs/useFormatter';
 
 type Props = {
     data: Product;
@@ -9,6 +10,7 @@ type Props = {
 
 export const ProductItem = ({ data }: Props) => {
     const { tenant } = useAppContext();
+    const formatter  = useFormatter();
 
     let infoContainer = styles.info + ' ' + styles.colorName;
 
@@ -22,7 +24,7 @@ export const ProductItem = ({ data }: Props) => {
                     </div>
                     <div className={styles.categoryName}>{ data.categoryName }</div>
                     <div className={styles.name}>{ data.name }</div>
-                    <div className={styles.price} style={{ color: tenant?.mainColor }} >{ data.price }</div>
+                    <div className={styles.price} style={{ color: tenant?.mainColor }} >{ formatter.formatPrice(data.price) }</div>
                 </div>
             </a>
         </Link>
