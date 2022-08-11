@@ -8,15 +8,18 @@ import { Product } from '../../../type/Product';
 import Head from 'next/head';
 import { Header } from '../../../components/Header';
 import { Button } from '../../../components/Button';
+import { useFormatter } from '../../../libs/useFormatter';
 
 const Product = (data: Props) => {
     const { tenant, setTenant } = useAppContext();
+    const formatter = useFormatter();
 
     useEffect(()=>{
         setTenant(data.tenant);
     }, []);
 
     const handleAddToCart = () => {}
+    
 
     return(
         <div className={styles.container}>
@@ -49,7 +52,10 @@ const Product = (data: Props) => {
             <div className={ styles.qtText }>Quantidade</div>
             <div className={ styles.area }>
                 <div className={ styles.areaLeft}>...</div>
-                <div className={ styles.areaRight}>...</div>
+                <div 
+                    className={ styles.areaRight}
+                    style={{ color: data.tenant.mainColor }}
+                > { formatter.formatPrice(data.product.price) } </div>
             </div>
 
             <div className={ styles.buttonArea }>
