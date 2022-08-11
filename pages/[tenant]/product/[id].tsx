@@ -19,14 +19,13 @@ const Product = (data: Props) => {
 
     const formatter = useFormatter();
 
-    const [qtCount, setQtCount] = useState(0);
+    const [qtCount, setQtCount] = useState(1);
     const handleAddToCart = () => {}
 
     const handleUpdateQt = (newCount: number) => {
         setQtCount(newCount);
     }
     
-
     return(
         <div className={styles.container}>
             <Head>
