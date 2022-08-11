@@ -26,6 +26,7 @@ const Product = (data: Props) => {
                     color={data.tenant.mainColor}
                     backHref={`/${data.tenant.slug}`}
                     title='Produto'
+                    invert
                 />
             </div>
             <div className={ styles.headerBg } style={{ backgroundColor: data.tenant.mainColor }}></div>

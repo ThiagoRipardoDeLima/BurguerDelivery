@@ -8,23 +8,25 @@ type Props = {
     color: string,
     title?: string,
     subtitle?: string;
+    invert?: boolean
 }
 
-export const Header = ( { backHref, color, title, subtitle }: Props ) => {
-
-    //const tenant = useAppContext();
-
-    //console.log(tenant);
+export const Header = ( { backHref, color, title, subtitle, invert }: Props ) => {
 
     return(
         <div className={ style.container }>
             <div className={ style.leftSide }>
                 <Link href={backHref}>
-                    <BackIcon color={color} />
+                    <a className={invert ? style.buttonTransparent : ''}>
+                        <BackIcon color={ invert ? "#FFF" : color} />
+                    </a>                        
                 </Link>
             </div>
             <div className={ style.centerSide }>
-                {title && <div className={ style.title }> {title} </div>}
+                {title && <div 
+                    className={ style.title }
+                    style={{ color: invert ? "#FFF" : "#1B1B1B" }}
+                > {title} </div>}
                 {subtitle && <div className={ style.subtitle }> {subtitle} </div>}
             </div>
             <div className={ style.rightSide }>...</div>
