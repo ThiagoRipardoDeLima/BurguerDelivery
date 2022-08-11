@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { Product } from '../../../type/Product';
 import Head from 'next/head';
 import { Header } from '../../../components/Header';
+import { Button } from '../../../components/Button';
 
 const Product = (data: Props) => {
     const { tenant, setTenant } = useAppContext();
@@ -14,6 +15,8 @@ const Product = (data: Props) => {
     useEffect(()=>{
         setTenant(data.tenant);
     }, []);
+
+    const handleAddToCart = () => {}
 
     return(
         <div className={styles.container}>
@@ -33,7 +36,33 @@ const Product = (data: Props) => {
             <div className={ styles.productImage }>
                 <img src={data.product.image} />
             </div>
+
+            <div className={ styles.category }> {data.product.categoryName} </div>
+            <div 
+                className={ styles.title }
+                style={{ borderBottomColor: data.tenant.mainColor }}
+            > {data.product.name} </div>
+            <div className={ styles.line }></div>
+
+            <div className={ styles.description }> {data.product.description} </div>
+
+            <div className={ styles.qtText }>Quantidade</div>
+            <div className={ styles.area }>
+                <div className={ styles.areaLeft}>...</div>
+                <div className={ styles.areaRight}>...</div>
+            </div>
+
+            <div className={ styles.buttonArea }>
+                <Button 
+                    color={data.tenant.mainColor}
+                    label='Adicionar à sacola'
+                    onClick={handleAddToCart}
+                    fill
+                />                
+            </div>
+
         </div>
+        
         
         
 

@@ -26,3 +26,34 @@
     width: auto;
     height: 350px;
 }
+
+.category {
+    font-weight: 500;
+    font-size: 16px;
+    color: #1B1B1B;
+    margin: 0 24px;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 48px;
+    border-bottom: 1.5px solid #000;
+    margin: 0 24px;
+    padding-bottom: 24px;
+    width: fit-content;
+    position: relative;
+}
+
+.line {
+    border-top: 1.5px solid #E2E2E2;
+    margin: -1.5px 24px 0 24px;
+}
+
+.description {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(27, 27, 27, 0.5);
+    margin: 24px
+}
