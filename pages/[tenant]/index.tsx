@@ -5,7 +5,7 @@ import { ProductItem } from '../../components/ProductItem';
 import { GetServerSideProps } from 'next';
 import { useApi } from '../../libs/useApi';
 import { Tenant } from '../../type/Tenant';
-import { useAppContext } from '../../contexts/AppContext';
+import { useAppContext } from '../../contexts/app';
 import { useEffect, useState } from 'react';
 import { Product } from '../../type/Product';
 

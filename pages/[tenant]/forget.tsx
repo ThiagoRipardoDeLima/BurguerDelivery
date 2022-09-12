@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import { useApi } from '../../libs/useApi';
 import { Tenant } from '../../type/Tenant';
-import { useAppContext } from '../../contexts/AppContext';
+import { useAppContext } from '../../contexts/app';
 import { useEffect, useState } from 'react';
 import { Header } from '../../components/Header';
 import { InputField } from '../../components/InputField';

@@ -1,7 +1,7 @@
 import { Product } from '../../type/Product';
 import Link from 'next/link';
 import styles from './styles.module.css';
-import { useAppContext } from '../../contexts/AppContext';
+import { useAppContext } from '../../contexts/app';
 import { useFormatter } from '../../libs/useFormatter';
 
 type Props = {
