@@ -1,5 +1,6 @@
 import styles from '../../styles/Home.module.css';
 import { SearchInput } from '../../components/SearchInput';
+import { Siderbar } from '../../components/Siderbar';
 import { Banner } from '../../components/Banner';
 import { ProductItem } from '../../components/ProductItem';
 import { GetServerSideProps } from 'next';
@@ -17,6 +18,7 @@ const Home = (data: Props) => {
     }, []);
 
     const [products, setProducts] = useState<Product[]>(data.products);
+    const [siderbarOpen, setSiderbarOpen] = useState(false);
 
     const handleSearch = (searchValue: string) => {
         console.log(searchValue);
@@ -31,11 +33,19 @@ const Home = (data: Props) => {
                         <div className={styles.headerSubTitle}>O que deseja para hoje?</div>
                     </div>
                     <div className={styles.headerTopRight}>
-                        <div className={styles.menuButton}>
+                        <div 
+                            className={styles.menuButton}
+                            onClick={ () => setSiderbarOpen(true) }
+                        >
                             <div className={styles.menuButtonLine} style={{ backgroundColor: tenant?.mainColor }}></div>
                             <div className={styles.menuButtonLine} style={{ backgroundColor: tenant?.mainColor }}></div>
                             <div className={styles.menuButtonLine} style={{ backgroundColor: tenant?.mainColor }}></div>
-                        </div>    
+                        </div>   
+                        <Siderbar 
+                            tenant={data.tenant} 
+                            open={siderbarOpen}
+                            onClose={ () => setSiderbarOpen(false) }
+                        /> 
                     </div>
                 </div>
                 <div className={styles.headerBottom}>
