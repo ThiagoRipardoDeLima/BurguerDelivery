@@ -11,11 +11,6 @@ export type ActionType = {
     payload?: any;
 }
 
-export enum Actions {
-    SET_TOKEN,
-    SET_USER
-}
-
 export type ContextType = {
     state: DataType;
     dispatch: Dispatch<ActionType>;
@@ -23,4 +18,9 @@ export type ContextType = {
 
 export type ProviderType = {
     children: ReactNode
+}
+
+export enum Actions {
+    SET_TOKEN,
+    SET_USER
 }

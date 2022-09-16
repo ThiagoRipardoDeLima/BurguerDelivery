@@ -1,6 +1,7 @@
 import { Http2ServerRequest } from "http2";
 import { Product } from "../type/Product";
 import { Tenant } from "../type/Tenant";
+import { User } from "../type/User";
 
 const productTemp: Product = {
     id: 1,
@@ -50,4 +51,12 @@ export const useApi = (tenantSlug: string) => ({
         return productTemp;
     },
 
+    authorizeToken: async (token: string): Promise<User | false> => {
+        if(!token)return false;
+
+        return {
+            name: 'Thiago Ripardo',
+            email: 'thiago.ripardo.86@gmail.com'
+        }
+    },
 });
