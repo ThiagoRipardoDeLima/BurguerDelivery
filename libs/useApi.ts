@@ -13,7 +13,7 @@ const productTemp: Product = {
 }
 
 export const useApi = (tenantSlug: string) => ({
-    getTenant: (): boolean | Tenant => {
+    getTenant: async (): Promise<boolean | Tenant> => {
         switch(tenantSlug){
             case 'b7burguer':
                 return {
@@ -37,7 +37,7 @@ export const useApi = (tenantSlug: string) => ({
         }
     },
 
-    getAllProducts: () => {
+    getAllProducts: async () => {
         let products = [];
 
         for (let index = 0; index < 10; index++)

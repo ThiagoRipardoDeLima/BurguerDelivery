@@ -12,6 +12,7 @@ import { Product } from '../../type/Product';
 import { getCookie } from 'cookies-next';
 import { User } from '../../type/User';
 import { useAuthContext } from '../../contexts/auth';
+//import Product from './product/[id]';
 
 const Home = (data: Props) => {
     const { setToken, setUser } = useAuthContext();
@@ -26,9 +27,17 @@ const Home = (data: Props) => {
     const [products, setProducts] = useState<Product[]>(data.products);
     const [siderbarOpen, setSiderbarOpen] = useState(false);
 
-    const handleSearch = (searchValue: string) => {
-        console.log(searchValue);
-    }
+    const [filteredProduct, setFilteredProduct] = useState<Product[]>(data.products);
+    const [searchText, setSearchText] = useState('');
+    const handleSearch = (value: string) => setSearchText(value);
+    useEffect(()=>{
+        let filteredProduct: Product[] = [];
+        filteredProduct = data.products.filter((product, index) => { 
+            return product.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1 
+        });
+
+        setFilteredProduct(filteredProduct);
+    }, [searchText]);
 
     return(
         <div className={styles.container}>
@@ -59,16 +68,51 @@ const Home = (data: Props) => {
                 </div>
             </header>
 
-            <Banner />
+            {!searchText &&
+                <>
+                    <Banner />
 
-            <div className={styles.grid}>
-                {products.map((item, index) => (
-                    <ProductItem 
-                        key={index}
-                        data={item}
-                    />
-                ))}
-            </div>
+                    <div className={styles.grid}>
+                        {products.map((item, index) => (
+                            <ProductItem 
+                                key={index}
+                                data={item}
+                            />
+                        ))}
+                    </div>    
+                </>
+            }
+
+            {searchText &&
+                <>
+                    <div className={styles.searchText}>
+                        Procurando por: <strong>{searchText}</strong>
+                    </div>
+
+                    {filteredProduct.length > 0 &&
+                        <div className={styles.grid}>
+                            {filteredProduct.map((item, index) => (
+                                <ProductItem 
+                                    key={index}
+                                    data={item}
+                                />
+                            ))}
+                        </div>    
+                    }
+
+                    {filteredProduct.length <= 0 &&
+                        <div className={styles.noProduct}>
+                            {filteredProduct.map((item, index) => (
+                                <ProductItem 
+                                    key={index}
+                                    data={item}
+                                />
+                            ))}
+                        </div>    
+                    }
+                </>
+            }
+            
 
         </div>
         
@@ -95,9 +139,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
 
     //Get Logged User
-    //const token = context.req.cookies.token;
     const token = getCookie('token', context);
+
+    console.log(token);
+
     const user = await api.authorizeToken(token as string);
+
+    console.log(user);
 
     const products = await api.getAllProducts();
 
